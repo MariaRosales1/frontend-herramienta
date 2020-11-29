@@ -1,0 +1,65 @@
+<!-- <div class="container" style="display: block;">
+  <div class="row row-content">
+    <div class="col-11 offset-1">
+      
+
+    </div>
+  </div>
+  <div class="row row-content">
+    <div class="col-12" style="margin-top:1%;">
+      <app-list-order-changes></app-list-order-changes>
+    </div>
+  </div>
+</div> -->
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <mat-card>
+        <mat-card-header>
+          <img mat-card-avatar src="../../assets/images/logoSoprte.png" alt="logo">
+          <mat-card-title>
+            <h3>Crear orden de cambio</h3>
+          </mat-card-title>
+        </mat-card-header>
+      
+        <mat-card-content>
+          <form novalidate [formGroup]="changeOrderForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+              <div class="offset-2">
+                <mat-form-field class="field-width">
+                  <input matInput formControlName="nameOrder" placeholder="Número de orden" type="number" required>
+                  <mat-error
+                    *ngIf="changeOrderForm.get('nameOrder').hasError('required') && changeOrderForm.get('nameOrder').touched">
+                    El número de la orden es obligatorio
+                  </mat-error>
+                </mat-form-field>
+      
+                <mat-form-field>
+                  <mat-label>Prioridad</mat-label>
+                  <mat-select formControlName="priority">
+                    <mat-option *ngFor="let priority of PRIORITIES" [value]="priority"> {{priority}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="form-row">
+              <mat-form-field class="field-width">
+                <textarea matInput formControlName="description" placeholder="Descripción" rows=8></textarea>
+                <mat-error
+                  *ngIf="changeOrderForm.get('description').hasError('required') && changeOrderForm.get('description').touched">
+                </mat-error>
+              </mat-form-field>
+      
+              <button mat-stroked-button [disabled] = "!isValidOrderChangeForm()" type="submit" style="color:white" mat-button
+                class="button-register">Crear</button>
+            </div>
+          </form>
+        </mat-card-content>
+        <mat-card-actions>
+      
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+ 
+</div>

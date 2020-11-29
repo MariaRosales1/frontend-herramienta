@@ -1,0 +1,104 @@
+<!-- <div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-around center"
+  fxLayoutGap="10px" fxLayoutGap.xs="0">
+
+  <div fxFlex="40" class="container-register">
+
+  </div>
+
+</div> -->
+<app-header></app-header>
+<div class="container">
+  
+  <div  class="row">
+    <div class="col-12 col-md-6 offset-md-3">
+      <mat-card>
+        <mat-card-header>
+          <img mat-card-avatar src="../../assets/images/logoSoprte.png" alt="logo">
+          <mat-card-title>
+            <h3>Registro de usuario</h3>
+          </mat-card-title>
+        </mat-card-header>
+      
+        <mat-card-content>
+          <form  novalidate [formGroup]="userForm"  #fform="ngForm" (ngSubmit)="onSubmit()">
+            {{userForm.status}}
+            <p>
+              <mat-form-field class="field-width">
+                <input matInput  formControlName="firstname" placeholder="Nombre" type="text" required>
+                <mat-error
+                  *ngIf="userForm.get('firstname').hasError('required') && userForm.get('firstname').touched">
+                  El nombre es obligatorio
+                </mat-error>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field class="field-width">
+                <input matInput  formControlName="lastname" placeholder="Apellidos" type="text" required>
+                <mat-error
+                *ngIf="userForm.get('lastname').hasError('required') && userForm.get('lastname').touched">
+                Los apellidos son obligatorios
+              </mat-error>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field class="field-width" appearance="fill">
+                <mat-label>Rol equipo</mat-label>
+                <mat-select  formControlName = "role">
+                  <mat-option *ngFor = "let role of roles" [value] = "role"> {{role}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field class="field-width">
+                <input matInput formControlName="email" placeholder="Correo electronico" type="email" required>
+                <mat-error
+                *ngIf="userForm.get('email').hasError('required') && userForm.get('email').touched">
+                El correo es obligatorio
+              </mat-error>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field class="field-width">
+                <input matInput formControlName="password" placeholder = "Contraseña" type = "password" required>
+                <mat-error
+                *ngIf="userForm.get('password').hasError('required') && userForm.get('password').touched">
+                La constraseña es obligatoria
+              </mat-error>
+              <!-- {{userForm.get('samePassword').dirty}}
+              {{userForm.get('password').hasError('noMatchPassword')}}
+              <mat-error
+              *ngIf="userForm.get('samePassword').dirty && userForm.get('password').hasError('noMatchPassword')">
+              
+              Las contraseñas no coinciden
+            </mat-error> -->
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field class="field-width">
+                <input matInput formControlName="samePassword" placeholder="Repetir Contraseña" type="password" required>
+                <mat-error
+                *ngIf="userForm.get('samePassword').hasError('required') && userForm.get('samePassword').touched">
+                Confirmacion de contraseñas obligatorio
+              </mat-error>
+              <mat-error
+                *ngIf="userForm.get('samePassword').hasError('noMatchPassword') && (userForm.get('samePassword').touched
+                || userForm.get('samePassword').dirty)">
+                Las contraseñas no coinciden
+              </mat-error>
+              </mat-form-field>
+            </p>
+            <p>
+              
+              <button mat-stroked-button type="submit" [disabled] = "!isValidUserForm()" style="color:white" mat-button class="button-register">Registrar</button>
+            </p>
+            
+          </form>
+        </mat-card-content>
+        <mat-card-actions>
+      
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+ 
+</div>

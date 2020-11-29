@@ -1,0 +1,26 @@
+<!-- <mat-toolbar color="primary">
+  <a mat-button routerLink='/register' routerLinkActive="active"><span class="fa fa-cogs fa-2x"></span>
+    Herramienta Soporte
+  </a>
+  <span class="flex-spacer"></span>
+  <a mat-button *ngIf="userService.loggedIn()">
+    <div (click)="userService.logout()">
+      Logout
+    
+    </div>
+  </a>
+</mat-toolbar> -->
+<nav class="navbar navbar-dark navbar-expand-sm  fixed-top">
+  <a class="navbar-brand mr-auto" href="#"><span class="fa fa-cogs fa-lg"></span>Herramienta</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <div class="collapse navbar-collapse" id="Navbar">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item"><a class="nav-link" routerLink='/register' routerLinkActive="active">
+          <span class="fa fa-home fa-lg"></span>
+          Registro</a></li>
+    </ul>
+  </div>
+</nav>

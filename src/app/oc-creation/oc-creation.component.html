@@ -13,7 +13,7 @@
 </div> -->
 <div class="container">
   <div class="row">
-    <div class="col-12 col-md-6">
+    <div class="col-12 offset-md-3 col-md-6">
       <mat-card>
         <mat-card-header>
           <img mat-card-avatar src="../../assets/images/logoSoprte.png" alt="logo">
@@ -24,34 +24,47 @@
       
         <mat-card-content>
           <form novalidate [formGroup]="changeOrderForm" (ngSubmit)="onSubmit()">
-            <div class="form-row">
-              <div class="offset-2">
-                <mat-form-field class="field-width">
-                  <input matInput formControlName="nameOrder" placeholder="Número de orden" type="number" required>
-                  <mat-error
-                    *ngIf="changeOrderForm.get('nameOrder').hasError('required') && changeOrderForm.get('nameOrder').touched">
-                    El número de la orden es obligatorio
-                  </mat-error>
-                </mat-form-field>
-      
-                <mat-form-field>
-                  <mat-label>Prioridad</mat-label>
-                  <mat-select formControlName="priority">
-                    <mat-option *ngFor="let priority of PRIORITIES" [value]="priority"> {{priority}}</mat-option>
-                  </mat-select>
-                </mat-form-field>
+            <div class="container">
+              <div class="row d-block" style="margin-left: 0.7em;">
+                <div class="form-row d-inline">
+                  <mat-form-field class="field-width">
+                    <input matInput formControlName="nameOrder" placeholder="Número de orden" type="number" required>
+                    <mat-error
+                      *ngIf="changeOrderForm.get('nameOrder').hasError('required') && changeOrderForm.get('nameOrder').touched">
+                      El número de la orden es obligatorio
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="form-row d-inline" style="padding-left: 3em;">
+                  <mat-form-field class="field-width">
+                    <mat-label>Prioridad</mat-label>
+                    <mat-select formControlName="priority">
+                      <mat-option *ngFor="let priority of PRIORITIES" [value]="priority"> {{priority}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
               </div>
-            </div>
-            <div class="form-row">
-              <mat-form-field class="field-width">
-                <textarea matInput formControlName="description" placeholder="Descripción" rows=8></textarea>
-                <mat-error
-                  *ngIf="changeOrderForm.get('description').hasError('required') && changeOrderForm.get('description').touched">
-                </mat-error>
-              </mat-form-field>
-      
-              <button mat-stroked-button [disabled] = "!isValidOrderChangeForm()" type="submit" style="color:white" mat-button
-                class="button-register">Crear</button>
+              <!-- <div class="form-group">
+                <label for="exampleFormControlTextarea1">Example textarea</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div> -->
+              
+              <div class="form-group">
+                <label for="description" style="color: rgba(0,0,0,.54);margin-left: 0.4em;">Descripción</label>
+                  <textarea  id="description" formControlName="description" class="form-control" rows=3></textarea>
+                  <mat-error
+                    *ngIf="changeOrderForm.get('description').hasError('required') && changeOrderForm.get('description').touched">
+                  </mat-error>   
+                </div>
+                <div class="container d-flex" style="flex-direction: column;">
+                  <div class="row" style="align-self: flex-end">
+                      <div class="d-flex">
+                        <button mat-stroked-button [disabled] = "!isValidOrderChangeForm()" type="submit" mat-button
+                        class="btn" style="background-color: black !important; color:white;">Crear</button>
+                      </div>
+                  </div>
+                </div>
+
             </div>
           </form>
         </mat-card-content>

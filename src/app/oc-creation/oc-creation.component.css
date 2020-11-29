@@ -8,6 +8,9 @@
     width: 40%;
     padding: 1%;
 } */
+.field-width{
+    width: 45%;
+}
 
 .button-register {
     background-color:#00695c;

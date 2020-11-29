@@ -11,16 +11,21 @@
   </a>
 </mat-toolbar> -->
 <nav class="navbar navbar-dark navbar-expand-sm  fixed-top">
-  <a class="navbar-brand mr-auto" href="#"><span class="fa fa-cogs fa-lg"></span>Herramienta</a>
+  <a class="navbar-brand mr-auto" href="#"><span class="fa fa-cogs fa-lg"></span>&nbsp;&nbsp;&nbsp;Herramienta</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
     <span class="navbar-toggler-icon"></span>
   </button>
   
   <div class="collapse navbar-collapse" id="Navbar">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item"><a class="nav-link" routerLink='/register' routerLinkActive="active">
-          <span class="fa fa-home fa-lg"></span>
-          Registro</a></li>
+      <span style="flex:1 1 auto">
+      </span>
     </ul>
+    <form class="form-inline">
+      <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
+      <a style="text-decoration: none; color: #fff!important;" class="nav-link navbar-text" routerLink='/register' routerLinkActive="active">
+        <span class="fa fa-home fa-lg"></span>
+        Registro</a>
+    </form>
   </div>
 </nav>

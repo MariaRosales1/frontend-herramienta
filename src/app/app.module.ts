@@ -42,6 +42,7 @@ import { SidebarSupportToolComponent } from './sidebar-support-tool/sidebar-supp
 
 import{AuthGuard} from './auth.guard';
 import { ListOrderChangesComponent } from './list-order-changes/list-order-changes.component';
+import { CreationSprintComponent } from './creation-sprint/creation-sprint.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { ListOrderChangesComponent } from './list-order-changes/list-order-chang
     OcCreationComponent,
     HomeSupportToolComponent,
     SidebarSupportToolComponent,
-    ListOrderChangesComponent
+    ListOrderChangesComponent,
+    CreationSprintComponent
   ],
   imports: [
     BrowserModule,

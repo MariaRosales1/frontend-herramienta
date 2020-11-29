@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { MatSnackBarConfig, MatSnackBar } from '@angular/material';
 import { OrderChangeService } from '../services/order-change.service';
 import { OrderChange } from '../shared/orderChange.model';
 
@@ -9,11 +10,14 @@ import { OrderChange } from '../shared/orderChange.model';
   styleUrls: ['./oc-creation.component.css']
 })
 export class OcCreationComponent implements OnInit {
-
+  @ViewChild('fform') orderChangeFormDirective;
   changeOrderForm: FormGroup;
   PRIORITIES = ["Alta", "Media", "Baja"];
+  showMessageCreationSuccessful: boolean;
+  showMessageCreationError: boolean;
+  messageCreation: string;
 
-  constructor(private fb: FormBuilder, private orderChangeService: OrderChangeService) {
+  constructor(private fb: FormBuilder, private orderChangeService: OrderChangeService, private _snackBar: MatSnackBar) {
     this.createForm();
   }
 
@@ -39,21 +43,38 @@ export class OcCreationComponent implements OnInit {
     try {
       console.log(this.changeOrderForm);
       let orderChange = this.createOrderChange();
-      if(orderChange){
+      if (orderChange) {
         this.orderChangeService.createOrderChange(orderChange).subscribe(
-          (res) =>{
+          (res) => {
             console.log(res);
-          },  
-          err => console.log(err)
+            this.resertOrderChangeForm();
+            let response: any = res;
+            if(response.error){
+              this.showMessageCreationError = true;
+              this.showMessageCreationSuccessful = false;
+              this.messageCreation = "Ocurrio un error en la creación de la orden de cambio";
+            }else{
+              this.showMessageCreationSuccessful = true;
+              this.showMessageCreationError = false;
+              this.messageCreation = "Orden de cambio creada con exito";
+            }
+            
+
+          },
+          err => {
+            console.log(err)
+            this.showMessageCreationError = true;
+            this.messageCreation = "Ocurrio un error en la creación de la orden de cambio";
+          }
         );
       }
       //this.orderChangeService.subscribe()
     }
     catch (error) {
-
+      console.log(error);
     }
   }
-  createOrderChange():OrderChange  {
+  createOrderChange(): OrderChange {
     let orderChange = null;
     if (this.isValidOrderChangeForm()) {
       orderChange = new OrderChange();
@@ -64,6 +85,22 @@ export class OcCreationComponent implements OnInit {
     }
     return orderChange;
   }
+  resertOrderChangeForm() {
+    this.changeOrderForm.reset({
+      numberOrder: '',
+      priority: '',
+      description: ''
+    });
+    this.orderChangeFormDirective.resetForm();
+  }
 
+  configurationSnackBar() {
+    let config = new MatSnackBarConfig();
+    config.duration = 4000;
+    config.panelClass = ['success-message'];
+    config.horizontalPosition = 'center';
+    config.verticalPosition = 'bottom';
+    this._snackBar.open("Usuario correctamente registrado", "", config);
+  }
 
 }

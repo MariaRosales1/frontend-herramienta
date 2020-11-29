@@ -5,6 +5,7 @@ import {HomeSupportToolComponent} from '../home-support-tool/home-support-tool.c
 import { OcCreationComponent } from '../oc-creation/oc-creation.component';
 import { LoginComponent } from '../login/login.component';
 import { AuthGuard } from '../auth.guard';
+import { ListOrderChangesComponent } from '../list-order-changes/list-order-changes.component';
 
 export const routes:Routes = [
     {path:'register', component:RegisterUserComponent },
@@ -12,7 +13,8 @@ export const routes:Routes = [
     {path: '', redirectTo:'/login', pathMatch:'full'},
     {path:'tool', component:SupportToolComponent, children:[
         {path:'home', component:HomeSupportToolComponent},
-        {path:'creationOC', component:OcCreationComponent}
+        {path:'creationOC', component:OcCreationComponent},
+        {path:'listOC', component:ListOrderChangesComponent}
     ],
     canActivate: [AuthGuard]}
 ];

@@ -13,65 +13,79 @@
 </div> -->
 <div class="container">
   <div class="row">
-    <div class="col-12 offset-md-3 col-md-6">
-      <mat-card>
-        <mat-card-header>
-          <img mat-card-avatar src="../../assets/images/logoSoprte.png" alt="logo">
-          <mat-card-title>
-            <h3>Crear orden de cambio</h3>
-          </mat-card-title>
-        </mat-card-header>
-      
-        <mat-card-content>
-          <form novalidate [formGroup]="changeOrderForm" (ngSubmit)="onSubmit()">
-            <div class="container">
-              <div class="row d-block" style="margin-left: 0.7em;">
-                <div class="form-row d-inline">
-                  <mat-form-field class="field-width">
-                    <input matInput formControlName="nameOrder" placeholder="Número de orden" type="number" required>
-                    <mat-error
-                      *ngIf="changeOrderForm.get('nameOrder').hasError('required') && changeOrderForm.get('nameOrder').touched">
-                      El número de la orden es obligatorio
-                    </mat-error>
-                  </mat-form-field>
+    <div class="col-12 offset-md-3 col-md-6 ">
+  
+        
+          <mat-card>
+            <mat-card-header>
+              <img mat-card-avatar src="../../assets/images/logoSoprte.png" alt="logo">
+              <mat-card-title>
+                <h3>Crear orden de cambio</h3>
+              </mat-card-title>
+            </mat-card-header>
+          
+            <mat-card-content>
+              <form novalidate [formGroup]="changeOrderForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+                <div class="container">
+                  <div class="row d-block" style="margin-left: 0.7em;">
+                    <div class="form-row d-inline">
+                      <mat-form-field class="field-width">
+                        <input matInput formControlName="nameOrder" placeholder="Número de orden" type="number" required>
+                        <mat-error
+                          *ngIf="changeOrderForm.get('nameOrder').hasError('required') && changeOrderForm.get('nameOrder').touched">
+                          El número de la orden es obligatorio
+                        </mat-error>
+                        <span></span>
+                      </mat-form-field>
+                    </div>
+                    <div class="form-row d-inline" style="padding-left: 3em;">
+                      <mat-form-field class="field-width">
+                        <mat-label>Prioridad</mat-label>
+                        <mat-select formControlName="priority">
+                          <mat-option *ngFor="let priority of PRIORITIES" [value]="priority"> {{priority}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <!-- <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Example textarea</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  </div> -->
+                  
+                  <div class="form-group">
+                    <label for="description" style="color: rgba(0,0,0,.54);margin-left: 0.4em;">Descripción</label>
+                      <textarea  id="description" formControlName="description" class="form-control" rows=3></textarea>
+                      <mat-error
+                        *ngIf = "changeOrderForm.get('description').hasError('required') && changeOrderForm.get('description').touched">
+                        Descripción no puede estar vacio
+                      </mat-error>  
+                   
+                    </div>
+                    <div class="container d-flex" style="flex-direction: column;">
+                      <div class="row" style="align-self: flex-end">
+                          <div class="d-flex">
+                            <button mat-stroked-button [disabled] = "!isValidOrderChangeForm()" type="submit" mat-button
+                            class="btn" style="background-color: black !important; color:white;">Crear</button>
+                          </div>
+                      </div>
+                    </div>
+    
                 </div>
-                <div class="form-row d-inline" style="padding-left: 3em;">
-                  <mat-form-field class="field-width">
-                    <mat-label>Prioridad</mat-label>
-                    <mat-select formControlName="priority">
-                      <mat-option *ngFor="let priority of PRIORITIES" [value]="priority"> {{priority}}</mat-option>
-                    </mat-select>
-                  </mat-form-field>
+              </form>
+            </mat-card-content>
+            <mat-card-actions>
+              <div class="alert alert-success" *ngIf = "showMessageCreationSuccessful" role="alert">
+                {{messageCreation}}
+                <div>
+                  Si deseas visualizar la orden de cambio creada, ve a la opción del menu Lista OC
                 </div>
               </div>
-              <!-- <div class="form-group">
-                <label for="exampleFormControlTextarea1">Example textarea</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-              </div> -->
-              
-              <div class="form-group">
-                <label for="description" style="color: rgba(0,0,0,.54);margin-left: 0.4em;">Descripción</label>
-                  <textarea  id="description" formControlName="description" class="form-control" rows=3></textarea>
-                  <mat-error
-                    *ngIf="changeOrderForm.get('description').hasError('required') && changeOrderForm.get('description').touched">
-                  </mat-error>   
-                </div>
-                <div class="container d-flex" style="flex-direction: column;">
-                  <div class="row" style="align-self: flex-end">
-                      <div class="d-flex">
-                        <button mat-stroked-button [disabled] = "!isValidOrderChangeForm()" type="submit" mat-button
-                        class="btn" style="background-color: black !important; color:white;">Crear</button>
-                      </div>
-                  </div>
-                </div>
-
-            </div>
-          </form>
-        </mat-card-content>
-        <mat-card-actions>
+              <div class="alert alert-danger" *ngIf = "showMessageCreationError" role="alert">
+                {{messageCreation}}
+              </div>
+            </mat-card-actions>
+          </mat-card>
       
-        </mat-card-actions>
-      </mat-card>
     </div>
   </div>
  

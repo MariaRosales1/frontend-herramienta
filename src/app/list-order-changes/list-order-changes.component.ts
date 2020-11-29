@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { OrderChange } from '../shared/orderChange.model';
+import {OrderChangeService} from '../services/order-change.service';
 
 @Component({
   selector: 'app-list-order-changes',
@@ -8,17 +9,21 @@ import { OrderChange } from '../shared/orderChange.model';
 })
 export class ListOrderChangesComponent implements OnInit {
 
-  displayedColumns: string[] = ['numero', 'prioridad', 'descripcion'];
-  orderChangeArray: any[] = [
-    {numero: 2324, prioridad: "alta", descripcion: "muy duro"}
-  ];
+  displayedColumns: string[] = ['Numero', 'Prioridad', 'Sprint', 'Fase', 'Estado del sprint'];
+  orderChangeArray: any = [];
 
-  constructor() {
+  constructor(private orderChangeService:OrderChangeService) {
 
    }
 
   ngOnInit() {
-    
+    this.orderChangeService.listOrderChange().subscribe((res)=>{
+      this.orderChangeArray = res;
+      console.log(res);
+    }, err =>{
+      console.log(err);
+      this.orderChangeArray = []
+    });
   }
 
 }

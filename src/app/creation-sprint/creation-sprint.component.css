@@ -1,0 +1,13 @@
+.button-register{
+    background-color:black;
+    color: white;
+}
+.field-width{
+    width: 100%;
+}
+.mat-card-header{
+    justify-content: center;
+}
+.mat-card-title{
+    font-size: 1em;
+}

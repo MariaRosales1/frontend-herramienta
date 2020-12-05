@@ -20,6 +20,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule } from  '@angular/material/core';
 import {MatTableModule} from '@angular/material/table';
 
 import { ReactiveFormsModule } from '@angular/forms'
@@ -32,6 +34,7 @@ import { LoginComponent } from './login/login.component';
 
 import {UserService} from './services/user.service';
 import {TokenInterceptorService} from './services/token-interceptor.service';
+import{SprintService} from './services/sprint.service';
 
 import { SupportToolComponent } from './support-tool/support-tool.component';
 import { ToolNavigationComponent } from './tool-navigation/tool-navigation.component';
@@ -43,6 +46,7 @@ import { SidebarSupportToolComponent } from './sidebar-support-tool/sidebar-supp
 import{AuthGuard} from './auth.guard';
 import { ListOrderChangesComponent } from './list-order-changes/list-order-changes.component';
 import { CreationSprintComponent } from './creation-sprint/creation-sprint.component';
+import { DashboardSprintComponent } from './dashboard-sprint/dashboard-sprint.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +60,8 @@ import { CreationSprintComponent } from './creation-sprint/creation-sprint.compo
     HomeSupportToolComponent,
     SidebarSupportToolComponent,
     ListOrderChangesComponent,
-    CreationSprintComponent
+    CreationSprintComponent,
+    DashboardSprintComponent
   ],
   imports: [
     BrowserModule,
@@ -75,6 +80,8 @@ import { CreationSprintComponent } from './creation-sprint/creation-sprint.compo
     MatSidenavModule,
     MatListModule,
     MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
@@ -82,12 +89,14 @@ import { CreationSprintComponent } from './creation-sprint/creation-sprint.compo
   ],
   providers: [
     UserService,
+    SprintService,
     AuthGuard,
     {
       provide:HTTP_INTERCEPTORS,
       useClass:TokenInterceptorService,
       multi:true
-    }
+    },
+    MatDatepickerModule
   ],
   bootstrap: [AppComponent]
 })

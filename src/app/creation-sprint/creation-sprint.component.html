@@ -1,3 +1,52 @@
-<p>
-  creation-sprint works!
-</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+             <strong>Creación Sprint</strong> 
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form novalidate [formGroup]="sprintForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+            <div class="row justify-content-center">
+              <div class="col-auto">
+                <mat-form-field class="field-width">
+                  <input matInput formControlName="numberSprint" placeholder="Número sprint" type="text">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-auto">
+                <mat-form-field class="field-width">
+                  <input matInput [matDatepicker]="start_date" placeholder="Fecha Inicio" formControlName="start_date">
+                  <mat-datepicker-toggle matSuffix [for]="start_date"></mat-datepicker-toggle>
+                  <mat-datepicker #start_date></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-auto">
+                <mat-form-field class="field-width">
+                  <input matInput [matDatepicker]="end_date" placeholder="Fecha Fin" formControlName="end_date">
+                  <mat-datepicker-toggle matSuffix [for]="end_date"></mat-datepicker-toggle>
+                  <mat-datepicker #end_date></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-auto">
+                <button mat-stroked-button type="submit" mat-button class="btn" [disabled]="!isValidSprintForm()"
+                  style="background-color: black !important; color:white;">Crear Sprint</button>
+              </div>
+            </div>
+          </form>
+        </mat-card-content>
+        <mat-card-actions>
+
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+</div>

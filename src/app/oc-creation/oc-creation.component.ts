@@ -10,6 +10,7 @@ import { OrderChange } from '../shared/orderChange.model';
   styleUrls: ['./oc-creation.component.css']
 })
 export class OcCreationComponent implements OnInit {
+  
   @ViewChild('fform') orderChangeFormDirective;
   changeOrderForm: FormGroup;
   PRIORITIES = ["Alta", "Media", "Baja"];
@@ -49,16 +50,16 @@ export class OcCreationComponent implements OnInit {
             console.log(res);
             this.resertOrderChangeForm();
             let response: any = res;
-            if(response.error){
+            if (response.error) {
               this.showMessageCreationError = true;
               this.showMessageCreationSuccessful = false;
               this.messageCreation = "Ocurrio un error en la creación de la orden de cambio";
-            }else{
+            } else {
               this.showMessageCreationSuccessful = true;
               this.showMessageCreationError = false;
               this.messageCreation = "Orden de cambio creada con exito";
             }
-            
+
 
           },
           err => {

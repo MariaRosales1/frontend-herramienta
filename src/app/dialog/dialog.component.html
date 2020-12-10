@@ -1,0 +1,48 @@
+<h2 mat-dialog-title>Lista de OCs Planeacion</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <table mat-table [dataSource]="orderChangeArray" class="mat-elevation-z8">
+
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="Checked">
+            <th mat-header-cell *matHeaderCellDef>Checked</th>
+            <td mat-cell *matCellDef="let element">
+              <mat-checkbox [(ngModel)]="element.checked" class="example-margin"></mat-checkbox>
+            </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="Oc">
+            <th mat-header-cell *matHeaderCellDef> Oc</th>
+            <td mat-cell *matCellDef="let element">
+              <a style="text-decoration: underline; color:#007bff" (click) = "openDialogTask(element.id_order)">{{element.id_order}}</a> </td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="Prioridad">
+            <th mat-header-cell *matHeaderCellDef> Prioridad</th>
+            <td mat-cell *matCellDef="let element"> {{element.priority}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Fase">
+            <th mat-header-cell *matHeaderCellDef> Fase </th>
+            <td mat-cell *matCellDef="let element"> {{element.id_phase}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Iniciar sprint</button>
+  <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

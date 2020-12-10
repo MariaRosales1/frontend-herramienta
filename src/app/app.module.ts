@@ -10,7 +10,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
-import {MatDialogModule} from '@angular/material/dialog';
+import {MatDialogModule} from '@angular/material/dialog';;
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -23,6 +23,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule } from  '@angular/material/core';
 import {MatTableModule} from '@angular/material/table';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 import { ReactiveFormsModule } from '@angular/forms'
 import { FormsModule } from '@angular/forms'; 
@@ -47,6 +48,8 @@ import{AuthGuard} from './auth.guard';
 import { ListOrderChangesComponent } from './list-order-changes/list-order-changes.component';
 import { CreationSprintComponent } from './creation-sprint/creation-sprint.component';
 import { DashboardSprintComponent } from './dashboard-sprint/dashboard-sprint.component';
+import { DialogComponent } from './dialog/dialog.component';
+import { CreationTaskComponent } from './creation-task/creation-task.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +64,9 @@ import { DashboardSprintComponent } from './dashboard-sprint/dashboard-sprint.co
     SidebarSupportToolComponent,
     ListOrderChangesComponent,
     CreationSprintComponent,
-    DashboardSprintComponent
+    DashboardSprintComponent,
+    DialogComponent,
+    CreationTaskComponent
   ],
   imports: [
     BrowserModule,
@@ -74,6 +79,7 @@ import { DashboardSprintComponent } from './dashboard-sprint/dashboard-sprint.co
     MatCheckboxModule,
     MatSelectModule,
     MatButtonModule,
+    MatDialogModule,
     MatSlideToggleModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
@@ -82,6 +88,7 @@ import { DashboardSprintComponent } from './dashboard-sprint/dashboard-sprint.co
     MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    DragDropModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
@@ -97,6 +104,11 @@ import { DashboardSprintComponent } from './dashboard-sprint/dashboard-sprint.co
       multi:true
     },
     MatDatepickerModule
+  ],
+ 
+  entryComponents:[
+    DialogComponent,
+    CreationTaskComponent
   ],
   bootstrap: [AppComponent]
 })

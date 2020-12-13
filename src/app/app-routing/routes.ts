@@ -12,6 +12,7 @@ import { DashboardSprintComponent } from '../dashboard-sprint/dashboard-sprint.c
 export const routes:Routes = [
     {path:'register', component:RegisterUserComponent },
     {path:'login', component:LoginComponent },
+    {path:'logout', component:LoginComponent },
     {path: '', redirectTo:'/login', pathMatch:'full'},
     {path:'tool', component:SupportToolComponent, children:[
         {path:'home', component:HomeSupportToolComponent},

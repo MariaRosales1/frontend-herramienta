@@ -23,9 +23,14 @@
     </ul>
     <form class="form-inline">
       <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
-      <a style="text-decoration: none; color: #fff!important;" class="nav-link navbar-text" routerLink='/register' routerLinkActive="active">
+      <a *ngIf="!userService.loggedIn()" style="text-decoration: none; color: #fff!important;" class="nav-link navbar-text" routerLink='/register' routerLinkActive="active">
         <span class="fa fa-home fa-lg"></span>
-        Registro</a>
+        <span>Registro</span></a>
+        <div style="text-decoration: none; color: #fff!important;" *ngIf="userService.loggedIn()" > 
+          <span style="font-size: 27px; margin-top: -2px;" class="fa fa-user-circle-o"></span>
+          <span>  Product Owner </span>
+          <span style="cursor: pointer; color: rgb(7, 156, 225)!important;  border-bottom: 1  px solid currentColor;" (click)="userService.logout()">  Cerrar sección</span>
+       </div>
     </form>
   </div>
 </nav>

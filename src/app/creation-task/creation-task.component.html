@@ -1,25 +1,50 @@
-<h1 mat-dialog-title> Creacion tarea para OC {{data.orderChange}}</h1>
+<div class="container">
+  <div class="row">
+    <div class="offset-2 col-6">
+      <h1 mat-dialog-title> Creacion tarea</h1>
+    </div>
+  </div>
+</div>
 <div mat-dialog-content>
-  <form>
-    <div class="form-group">
-      <label for="exampleInputEmail1">OC</label>
-      <input type="text" class="form-control" id="orderChange" aria-describedby="orderChange" placeholder="OC">
+  <form novalidate [formGroup]="taskForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+      <div class="row">
+        <div class="offset-2 col-3">
+          <mat-form-field class="field-width">
+            <input matInput formControlName="oc" placeholder="Orden de cambio" type="text">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class=" offset-2 col-3">
+          <mat-form-field class="field-width">
+            <mat-label>Complejidad</mat-label>
+            <mat-select formControlName="complexity">
+              <mat-option *ngFor="let complexity of COMPLEXITY" [value]="complexity"> {{complexity}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="offset-2 col-7">
+          <label for="description" style="color: rgba(0,0,0,.54);">Descripción</label>
+          <textarea id="description" formControlName="description" class="form-control" rows=2></textarea>
+          <mat-error *ngIf="taskForm.get('description').hasError('required') && taskForm.get('description').touched">
+            Descripción no puede estar vacio
+          </mat-error>
+        </div>
+      </div>
+      <div class="row" style="padding-top:1.5%;">
+        <div class="offset-2 col-2">
+          <button mat-button [disabled]="!isValidTaskForm()" style="background-color: black !important; color:white; ">Crear tarea</button>
+        </div>
+        <div class="offset-2 col-2">
+          <button style="background-color: black !important; color:white; " mat-button mat-dialog-close>Cancel</button>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="inputState">State</label>
-      <select id="inputState" class="form-control">
-        <option selected>Choose...</option>
-        <option>...</option>
-      </select>
-    </div>
-    <div class="form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>
 <div mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Crear tarea</button>
-  <button mat-button mat-dialog-close>Cancel</button>
+
 </div>

@@ -4,28 +4,72 @@
       <div class="col-4">
         <div class="example-container">
           <div class="d-flex" style="flex-direction: row;justify-content: space-between">
-            <h2 class="d-inline">To do</h2>
-            <button class="d-inline" mat-button (click)="openDialog()"><span class="fa fa-pencil fa-lg"></span></button>
+            <h2 class="d-inline">Por Hacer</h2>
+            <button class="d-inline" mat-button (click)="openDialogOrdersChange()"><span class="fa fa-pencil fa-lg"></span></button>
           </div>
       
           <div cdkDropList [cdkDropListData]="todo" class="example-list" (cdkDropListDropped)="drop($event)">
-            <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
+            <div class="example-box" *ngFor="let item of todo" cdkDrag>
+              <mat-card class="example-card">
+                <mat-card-header>
+                  <mat-card-title>Orden de cambio {{item.id_order}}</mat-card-title>
+                  <mat-card-subtitle>Prioridad: {{item.priority}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  <p>
+                    {{item.description}}
+                  </p>
+                </mat-card-content>
+                <mat-card-actions>
+                </mat-card-actions>
+              </mat-card>
+            </div>
           </div>
         </div>
       </div>
       <div class="col-4">
         <div class="example-container">
-          <h2>Doing</h2>
+          <h2>En Progreso</h2>
           <div cdkDropList [cdkDropListData]="todo" class="example-list" (cdkDropListDropped)="drop($event)">
-            <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
+            <div class="example-box" *ngFor="let item of doing" cdkDrag>
+              <mat-card class="example-card">
+                <mat-card-header>
+                  <mat-card-title>Orden de cambio {{item.orderChange}}</mat-card-title>
+                  <mat-card-subtitle>Complejidad tarea: {{item.complexity}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  <p>
+                    Descripción Tarea:
+                    {{item.description}}
+                  </p>
+                </mat-card-content>
+                <mat-card-actions>
+                </mat-card-actions>
+              </mat-card>
+            </div>
           </div>
         </div>
       </div>
       <div class="col-4">
         <div class="example-container">
-          <h2>Done</h2>
+          <h2>Hecho</h2>
           <div cdkDropList [cdkDropListData]="done" class="example-list" (cdkDropListDropped)="drop($event)">
-            <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+            <div class="example-box" *ngFor="let item of done" cdkDrag>
+              <mat-card class="example-card">
+                <mat-card-header>
+                  <mat-card-title>Orden de cambio {{item.orderChange}}</mat-card-title>
+                  <mat-card-subtitle>Complejidad tarea: {{item.complexity}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  <p>
+                    Descripción Tarea:
+                    {{item.description}}
+                  </p>
+                </mat-card-content>
+                <mat-card-actions>
+                </mat-card-actions>
+              </mat-card>
+            </div>
           </div>
         </div>
       </div>

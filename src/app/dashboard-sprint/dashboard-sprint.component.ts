@@ -10,25 +10,20 @@ import { DialogComponent } from '../dialog/dialog.component';
   styleUrls: ['./dashboard-sprint.component.css']
 })
 export class DashboardSprintComponent implements OnInit {
-  todo = [
-    'Get to work',
-    'Pick up groceries',
-    'Go home',
-    'Fall asleep'
-  ];
-
-  done = [
-    'Get up',
-    'Brush teeth',
-    'Take a shower',
-    'Check e-mail',
-    'Walk dog'
-  ];
+  cardsOrderChange: any;
+  todo = [];
+  done = [];
+  doing = [];
+  cardsEmpty:boolean;
   constructor(private route: ActivatedRoute, public dialog: MatDialog) { }
 
   ngOnInit() {
     const idSprint = this.route.snapshot.params['idSprint'];
     console.log(idSprint);
+    if(this.todo.length == 0){
+      this.cardsEmpty = true;
+    }
+
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -48,7 +43,17 @@ export class DashboardSprintComponent implements OnInit {
   //     console.log(`Dialog result: ${result}`);
   //   });
   // }
-  openDialog(){
-    this.dialog.open(DialogComponent, { width: '500px', height: '350px' });
+  openDialogOrdersChange() {
+    const dialogRef = this.dialog.open(DialogComponent, { width: '500px', height: '370px' });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.cardsOrderChange = result;
+      console.log(this.cardsOrderChange);
+      if (!this.cardsOrderChange.eventCancel) {
+        this.todo = this.cardsOrderChange.ordersChangeNotSelected;
+        this.doing = this.cardsOrderChange.taskArray;
+      }
+    });
   }
 }

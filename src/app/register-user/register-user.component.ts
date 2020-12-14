@@ -63,8 +63,8 @@ export class RegisterUserComponent implements OnInit {
             let response:any = res;
             this.resertUserForm();
             this.configurationSnackBar();
-            localStorage.setItem('token', response.token);
-            this.router.navigate(['/tool']);
+            // localStorage.setItem('token', response.token);
+            this.router.navigate(['/login']);
            // this.router.navigate([{outlets: {primary: '/tool', toolSupport: '/tool'}}]);
           },
           err => console.log(err));

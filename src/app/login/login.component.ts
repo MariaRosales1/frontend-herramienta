@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import {Router} from '@angular/router';
@@ -11,7 +11,8 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-
+  messageError:boolean;
+  @ViewChild('fform') loginFormDirective;
   constructor(private fb: FormBuilder, private userService: UserService, private router:Router) {
     this.createForm();
   }
@@ -47,16 +48,31 @@ export class LoginComponent implements OnInit {
             console.log(res);
             let response:any = res;
             localStorage.setItem('token', response.token);
+            this.userService.role = response.role;
+            localStorage.setItem('role', response.role);
             this.router.navigate(['/tool']);
 
 
           },
-          err => console.log(err));
+          err => {
+            console.log("Hubo un error en el Login");
+            console.log(err);
+            this.messageError = true;
+            this.resertLoginForm();
+          });
       }
       // this.userService.signin();
     }
     catch (error) {
       console.log(error);
     }
+  }
+
+  resertLoginForm() {
+    this.loginForm.reset({
+      email: '',
+      password: ''
+    });
+    this.loginFormDirective.resetForm();
   }
 }

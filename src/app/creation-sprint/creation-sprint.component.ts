@@ -47,11 +47,12 @@ export class CreationSprintComponent implements OnInit {
   onSubmit() {
     console.log(this.sprintForm);
     let sprint:Sprint = this.creationSprint();
+    console.log(sprint);
     if (sprint) {
       this.sprintService.createSprint(sprint).subscribe(
         (res) =>{
           console.log(res);
-          this.router.navigate(['/dashboardSprint', sprint.numberSprint ])
+          this.router.navigate(['/tool/dashboardSprint', sprint.numberSprint ])
         },
         err => console.log(err));
     }
@@ -62,8 +63,8 @@ export class CreationSprintComponent implements OnInit {
     if (this.isValidSprintForm()) {
       sprint = new Sprint();
       sprint.numberSprint = this.sprintForm.get('numberSprint').value;
-      sprint.start_date = this.sprintForm.get('start_date').value;
-      sprint.end_date = this.sprintForm.get('end_date').value;
+      sprint.start_date = this.sprintForm.get('start_date').value.toLocaleDateString();
+      sprint.end_date = this.sprintForm.get('end_date').value.toLocaleDateString();
     }
     return sprint;
   }

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class UserService {
 
   API_URI = 'http://localhost:3000/user';
-  role:String;
+  public role:string;
 
   constructor(private http: HttpClient, private router:Router) { }
 
@@ -26,6 +26,7 @@ export class UserService {
     return this.http.post(`${this.API_URI}/signin`, credentials);
   }
   loggedIn(){
+  
     return !!localStorage.getItem('token');
   }
   getToken(){
@@ -34,5 +35,8 @@ export class UserService {
   logout(){
     localStorage.removeItem('token');
     this.router.navigate(['login']);
+  }
+  getRole(){
+    return localStorage.getItem('role');
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-support-tool',
@@ -7,10 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SupportToolComponent implements OnInit {
 
-  constructor() { }
+  accessProductOwner: boolean;
+  accessScrumMaster: boolean;
+  accessDesarrollador: boolean;
 
-  loadScript(){
-    
+  constructor(private userService: UserService) {
+    switch(this.userService.getRole()){
+      case "Product Owner":
+        this.accessProductOwner = true;
+        break;
+      case "Scrum Master":
+        this.accessScrumMaster = true;
+        break;
+      case "Desarrollador":
+        this.accessDesarrollador = true;
+    }
+   }
+
+  loadScript() {
+
   }
   ngOnInit() {
   }

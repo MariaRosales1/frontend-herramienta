@@ -12,7 +12,7 @@
         </mat-card-header>
   
         <mat-card-content>
-          <form  novalidate [formGroup]="loginForm"  (ngSubmit)="onSubmit()">
+          <form  novalidate [formGroup]="loginForm"   #fform="ngForm"  (ngSubmit)="onSubmit()">
             <p>
               <mat-form-field class="field-width">
                 <input matInput formControlName="email" placeholder="Correo electronico" type="email" required>
@@ -43,6 +43,9 @@
                 Ingresar
               </button>
             </p>
+            <div class="alert alert-danger" role="alert" *ngIf = "messageError">
+              Correo o contraseña invalida
+            </div>
             
           </form>
         </mat-card-content>

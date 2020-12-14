@@ -48,13 +48,13 @@
             <li class="active">
                <a routerLink="/tool/home" routerLinkActive="active"><span class="fa-stack fa-lg "><i class="fa fa-dashboard fa-stack-1x "></i></span> Inicio</a>
             </li>
-            <li>
+            <li *ngIf = "accessProductOwner">
                <a routerLink="/tool/creationOC" routerLinkActive="active"><span class="fa-stack fa-lg"><i class="fa fa-tasks fa-stack-1x "></i></span>Crear Ocs</a>
             </li>
-            <li>
+            <li *ngIf = "accessProductOwner">
                <a routerLink="/tool/listOC" routerLinkActive="active"><span class="fa-stack fa-lg"><i class="fa fa-table fa-stack-1x "></i></span>Lista OCs</a>
             </li>
-            <li>
+            <li *ngIf = "accessScrumMaster">
               <a  routerLink="/tool/creationSprint" routerLinkActive="active"><span class="fa-stack fa-lg"><i class="fa fa-calendar fa-stack-1x "></i></span>Crear sprint</a>
            </li>
            <li>

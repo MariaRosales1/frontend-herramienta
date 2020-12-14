@@ -6,8 +6,11 @@ import {UserService} from '../services/user.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor(private userService:UserService) { }
+  roleUser: any;
+  constructor(private userService:UserService) {
+    this.roleUser = this.userService.getRole();
+    console.log(this.roleUser);
+   }
 
   ngOnInit() {
   }

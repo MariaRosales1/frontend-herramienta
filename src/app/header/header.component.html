@@ -28,8 +28,8 @@
         <span>Registro</span></a>
         <div style="text-decoration: none; color: #fff!important;" *ngIf="userService.loggedIn()" > 
           <span style="font-size: 27px; margin-top: -2px;" class="fa fa-user-circle-o"></span>
-          <span>  Product Owner </span>
-          <span style="cursor: pointer; color: rgb(7, 156, 225)!important;  border-bottom: 1  px solid currentColor;" (click)="userService.logout()">  Cerrar sección</span>
+          <span>  {{roleUser}} </span>
+          <span style="cursor: pointer; color: rgb(7, 156, 225)!important;  border-bottom: 1  px solid currentColor;" (click)="userService.logout()">  Cerrar sesión</span>
        </div>
     </form>
   </div>
